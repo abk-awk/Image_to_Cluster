@@ -143,12 +143,27 @@ vérifier que l'application tourne correctment en l'ayant en status running
 kubectl get svc | grepp my-nginx
 ```
 
-Ensuite réalisez le port-forward pour permettre l'accès de l'application par un numéro de port au choix 
+Ensuite réalisez le port-forward du 80 pour permettre l'accès de l'application par un numéro de port au choix 
 
 ```
 kubectl port-forwrad svc/my-nginx 8081:80 & # port 8081 dans mon cas
 ```
+11. Tout en un 
 
+Déployer votre application en exécutant une seule commande : 
+
+Placez vous dans /mon_projet : 
+
+```
+cd mon_projet
+```
+
+Entrer la commande suivante : 
+
+```
+make deploy 
+```
+---------------------------------------------------
 ---------------------------------------------------
 Séquence 4 : Documentation  
 Difficulté : Facile (~30 minutes)
