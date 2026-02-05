@@ -68,7 +68,7 @@ Votre mission (si vous l'acceptez) : Créez une **image applicative customisée 
 1. Installation du cluster Kubernetes K3d ( A réaliser en Séquence 1)
 2. Installation de Packer et Ansible
 
-installer packer 
+Installer packer 
 ```
 wget https://releases.hashicorp.com/packer/1.10.0/packer_1.10.0_linux_amd64.zip
 unzip packer_1.10.0_linux_amd64.zip
@@ -85,7 +85,7 @@ ansible --version
 packer --version
 ```
 4. Build de l'image customisée (Nginx + index.html)
-Se placer dans le dossier mon_projet/packer, exécuter :
+Se placer dans le dossier mon_projet/packer pour build l'iange customisée en exécutant :
 
 ```
 packer init .
@@ -98,28 +98,32 @@ Vérifier que le service est bien lancé :
 
 ```
 kubectl get pods
-kubectl het svc 
+kubectl get svc | grep my-nginx    # pour voir si le service est bien lancé, il est doit etre en **running**
 ```
 Vous devriez voir my-ngnix comme service
 6. Import de l'image dans K3d
-Taper la commande suiavnte : 
+
+Entrer la commande suiavnte pour importer l'**image nginx** précedemment créée vers le cluster k3d :
 
 ```
 k3d cluster create lab --servers 3 --agents 3 -p "8080:80@loadbalancer"
 
 ```
 7. Déploiement du service dans K3d via Ansible
+
 Entrer la commande suivante pour deployer le service dans k3d :
 
 
 ```
 k3d image import my-nginx:latest -c lab
 
-# Vérifier
+# Vérifier que l'image est bien présenté dans la liste affichée
 k3d image list -c lab | grep my-nginx
 ```
 9. Automatisation du déploiemen avec ansible
- Se placer dans le dossier /mon_projet_ansible avec la commande : 
+
+Se placer dans le dossier /mon_projet_ansible avec la commande : 
+
 ```
 cd ansible
 ```
