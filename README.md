@@ -65,12 +65,29 @@ Votre mission (si vous l'acceptez) : Créez une **image applicative customisée 
 ---------------------------------------------------  
 ## Processus de travail (résumé)
 
-1. Installation du cluster Kubernetes K3d (Séquence 1)
+1. Installation du cluster Kubernetes K3d ( A réaliser en Séquence 1)
 2. Installation de Packer et Ansible
-3. Build de l'image customisée (Nginx + index.html)
-4. Import de l'image dans K3d
-5. Déploiement du service dans K3d via Ansible
-6. Ouverture des ports et vérification du fonctionnement
+
+installer packer 
+```
+wget https://releases.hashicorp.com/packer/1.10.0/packer_1.10.0_linux_amd64.zip
+unzip packer_1.10.0_linux_amd64.zip
+sudo mv packer /usr/local/bin/
+```
+
+Installer ansible 
+```
+pip3 install ansible
+```
+Vérifier le fonctionnement de ansible && packer 
+```
+ansible --version
+packer --version
+```
+4. Build de l'image customisée (Nginx + index.html)
+5. Import de l'image dans K3d
+6. Déploiement du service dans K3d via Ansible
+7. Ouverture des ports et vérification du fonctionnement
 
 ---------------------------------------------------
 Séquence 4 : Documentation  
