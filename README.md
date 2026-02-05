@@ -85,9 +85,65 @@ ansible --version
 packer --version
 ```
 4. Build de l'image customisée (Nginx + index.html)
-5. Import de l'image dans K3d
-6. Déploiement du service dans K3d via Ansible
-7. Ouverture des ports et vérification du fonctionnement
+Se placer dans le dossier mon_projet/packer, exécuter :
+
+```
+packer init .
+packer validate validate nginx-image.pkr.hcl
+packer build nginx-image.pkr.hcl
+
+```
+Vérifier que le service est bien lancé : 
+
+
+```
+kubectl get pods
+kubectl het svc 
+```
+Vous devriez voir my-ngnix comme service
+6. Import de l'image dans K3d
+Taper la commande suiavnte : 
+
+```
+k3d cluster create lab --servers 3 --agents 3 -p "8080:80@loadbalancer"
+
+```
+7. Déploiement du service dans K3d via Ansible
+Entrer la commande suivante pour deployer le service dans k3d :
+
+
+```
+k3d image import my-nginx:latest -c lab
+
+# Vérifier
+k3d image list -c lab | grep my-nginx
+```
+9. Automatisation du déploiemen avec ansible
+ Se placer dans le dossier /mon_projet_ansible avec la commande : 
+```
+cd ansible
+```
+
+```
+# Tester la connexion
+ansible localhost -i inventory.ini -m ping
+
+# Lancer le déploiement
+ansible-playbook -i inventory.ini playbook.yml
+```
+10. Ouverture des ports et vérification du fonctionnement
+
+vérifier que l'application tourne correctment en l'ayant en status running 
+
+```
+kubectl get svc | grepp my-nginx
+```
+
+Ensuite réalisez le port-forward pour permettre l'accès de l'application par un numéro de port au choix 
+
+```
+kubectl port-forwrad svc/my-nginx 8081:80 & # port 8081 dans mon cas
+```
 
 ---------------------------------------------------
 Séquence 4 : Documentation  
