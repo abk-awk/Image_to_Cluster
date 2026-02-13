@@ -28,7 +28,7 @@ Dans le terminal du Codespace copier/coller les codes ci-dessous etape par étap
 curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
 ```
 ```
-k3d cluster create lab \
+k3d cluster create lab \ 
   --servers 1 \
   --agents 2
 ```
@@ -56,7 +56,7 @@ Séquence 3 : Exercice
 Objectif : Customisez un image Docker avec Packer et déploiement sur K3d via Ansible
 Difficulté : Moyen/Difficile (~2h)
 ---------------------------------------------------  
-Votre mission (si vous l'acceptez) : Créez une **image applicative customisée à l'aide de Packer** (Image de base Nginx embarquant le fichier index.html présent à la racine de ce Repository), puis déployer cette image customisée sur votre **cluster K3d** via **Ansible**, le tout toujours dans **GitHub Codespace**.  
+Votre mission (si vous l'acceptez) : Créez une **image applicative customisée à l'aide de Packer** (Image de base Nginx embarquant le fichier index.html qui est présent à la racine de ce Repository), puis déployer cette image customisée sur votre **cluster K3d** via **Ansible**, le tout toujours dans **GitHub Codespace**.  
 
 **Architecture cible :** Ci-dessous, l'architecture cible souhaitée.   
   
